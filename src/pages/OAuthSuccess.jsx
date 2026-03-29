@@ -26,13 +26,14 @@ export default function OAuthSuccess() {
         emailVerified,
         roleList: ['ROLE_USER']
       }
-      login(token, user)
+
+      login(token, user)  // save token & user to context/localStorage
       navigate('/user/dashboard', { replace: true })
     } else {
       // Something went wrong
       navigate('/login?error=oauth_failed', { replace: true })
     }
-  }, [])
+  }, [params, login, navigate])  // ✅ include dependencies
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
